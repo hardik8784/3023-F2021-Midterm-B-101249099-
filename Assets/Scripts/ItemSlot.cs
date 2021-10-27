@@ -1,3 +1,15 @@
+/*
+ * Full Name: Hardik Dipakbhai Shah
+ * Student ID : 101249099
+ * Date Modified : October 26,2021
+ * File : ItemSlot.cs
+ * Description : This is the script to Assignthe Ids and Open the Container when player collide with the help of OnTriggerEvent
+ * Revision History : v0.1 > Added Comments to know the Code better before start anything & to include a program header
+ *                    v0.2 > Addded TransferItemInSlot function which transfers the item if it is consumable from the Box
+ *                    v0.3 > Added TransferSuccessInSlot function which increase the itemCount of the Bag as it transferred from Box
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,11 +39,17 @@ public class ItemSlot : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI itemCountText;
 
+
+    //RefreshInfo will be called on the frame when a script is enabled just before any of the Update methods are called the first time.
     void Start()
     {
         RefreshInfo();
     }
 
+    /// <summary>
+    /// This UseItemInSlot function will check first if there is item inthe slot or not
+    /// If we have any Item in slot and if it is Consumable then it will decrease the itemCount and Refresh the Info
+    /// </summary>
     public void UseItemInSlot()
     {
         if(itemInSlot != null)
@@ -45,12 +63,50 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// The function TransferSuccessInSlot will increase the Value of itemCount by one in the Bag
+    /// After that it will Refresh the Information
+    /// </summary>
+    public void TransferSuccessInSlot()
+    {
+        //if(itemInSlot != null)
+        //{
+            itemCount++;
+            Debug.Log("Item Added To the Bag: " + name + " New ItemCount: " + itemCount);
+            RefreshInfo();
+        //}
+    }
+
+
+    /// <summary>
+    /// The function TransferItemInSlot will first check there is ItemInSlot or not
+    /// Then it will check if it is Consumable or not, if so it will decrease the itemCount from the Box and Refresh the Information
+    /// </summary>
+    public void TransferItemInSlot()
+    {
+        if (itemInSlot != null)
+        {
+            itemInSlot.Transfer();
+            if (itemInSlot.isConsumable)
+            {
+                itemCount--;
+                RefreshInfo();
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// The function RefreshInfo checks the item is present or not 
+    /// If so, It changes the ItemCount to it's value and set the sprite to it
+    /// </summary>
     public void RefreshInfo()
     {
-        if(ItemCount < 1)
-        {
-            itemInSlot = null;
-        }
+        //if(ItemCount < 1)
+        //{
+        //    itemInSlot = null;
+        //}
 
         if(itemInSlot != null) // If an item is present
         {
@@ -61,8 +117,8 @@ public class ItemSlot : MonoBehaviour
         } else
         {
             // No item
-            itemCountText.text = "";
-            icon.gameObject.SetActive(false);
+            itemCountText.text = "0";
+            //icon.gameObject.SetActive(false);
         }
     }
 }

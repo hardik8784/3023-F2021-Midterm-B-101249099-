@@ -1,3 +1,14 @@
+/*
+ * Full Name: Hardik Dipakbhai Shah
+ * Student ID : 101249099
+ * Date Modified : October 26,2021
+ * File : Item.cs
+ * Description : This is the script to Assignthe Ids and Open the Container when player collide with the help of OnTriggerEvent
+ * Revision History : v0.1 > Added Comments to know the Code better before start anything & to include a program header
+ *                    v0.2 > Added Transfer function which shows the item has been transferred to the bag from the Box and returns boolean value if successful
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +44,13 @@ public class Item : ScriptableObject
     public bool Use()
     {
         Debug.Log("Used item: " + name);
+        return true;
+    }
+
+    //returns whether or not the Item was successfully Transferred
+    public bool Transfer()
+    {
+        Debug.Log("Transferred Item: " + name);
         return true;
     }
 }

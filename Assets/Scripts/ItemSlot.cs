@@ -123,6 +123,7 @@ public class ItemSlot : MonoBehaviour
     /// </summary>
     public void RefreshInfo()
     {
+        // If you want item to disappear then you can remove the below comment!
         //if(ItemCount < 1)
         //{
         //    itemInSlot = null;

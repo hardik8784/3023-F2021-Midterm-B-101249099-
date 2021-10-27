@@ -1,7 +1,7 @@
 /*
  * Full Name: Hardik Dipakbhai Shah
  * Student ID : 101249099
- * Date Modified : October 26,2021
+ * Date Modified : October 27,2021
  * File : Inventory.cs
  * Description : This is the script to Assignthe Ids and Open the Container when player collide with the help of OnTriggerEvent
  * Revision History : v0.1 > Added Comments to know the Code better before start anything & to include a program header

@@ -1,7 +1,7 @@
 /*
  * Full Name: Hardik Dipakbhai Shah
  * Student ID : 101249099
- * Date Modified : October 26,2021
+ * Date Modified : October 27,2021
  * File : ItemSlot.cs
  * Description : This is the script to Assignthe Ids and Open the Container when player collide with the help of OnTriggerEvent
  * Revision History : v0.1 > Added Comments to know the Code better before start anything & to include a program header
@@ -19,6 +19,8 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     public Item itemInSlot = null;
+
+    public bool bTransferSuccess = true;
 
     [SerializeField]
     private int itemCount = 0;
@@ -43,6 +45,7 @@ public class ItemSlot : MonoBehaviour
     //RefreshInfo will be called on the frame when a script is enabled just before any of the Update methods are called the first time.
     void Start()
     {
+
         RefreshInfo();
     }
 
@@ -57,8 +60,11 @@ public class ItemSlot : MonoBehaviour
             itemInSlot.Use();
             if (itemInSlot.isConsumable)
             {
-                itemCount--;
-                RefreshInfo();
+                if (ItemCount > 0)
+                {
+                    itemCount--;
+                    RefreshInfo();
+                }
             }
         }
     }
@@ -72,13 +78,21 @@ public class ItemSlot : MonoBehaviour
     {
         //if(itemInSlot != null)
         //{
-            itemCount++;
-            Debug.Log("Item Added To the Bag: " + name + " New ItemCount: " + itemCount);
-            RefreshInfo();
+       
+                itemCount++;
+                Debug.Log("Item Added To the Bag: " + name + " & New ItemCount is: " + itemCount + "!");
+                RefreshInfo();
+            
+       
+        //{
+        //    itemCount++;
+        //    Debug.Log("Item Added To the Bag: " + name + " & New ItemCount is: " + itemCount + "!");
+        //    RefreshInfo();
+        //}
         //}
     }
 
-
+   
     /// <summary>
     /// The function TransferItemInSlot will first check there is ItemInSlot or not
     /// Then it will check if it is Consumable or not, if so it will decrease the itemCount from the Box and Refresh the Information
@@ -87,11 +101,17 @@ public class ItemSlot : MonoBehaviour
     {
         if (itemInSlot != null)
         {
-            itemInSlot.Transfer();
             if (itemInSlot.isConsumable)
             {
-                itemCount--;
-                RefreshInfo();
+                if (ItemCount >= 1)
+                {
+                    itemInSlot.Transfer();
+                    itemCount--;
+                    RefreshInfo();
+                    //Unique();
+                    //TransferSuccessInSlot();
+                    //bTransferSuccess = true;
+                }
             }
         }
     }
@@ -108,16 +128,18 @@ public class ItemSlot : MonoBehaviour
         //    itemInSlot = null;
         //}
 
-        if(itemInSlot != null) // If an item is present
+        if (itemInSlot != null) // If an item is present
         {
             //update image and text
             itemCountText.text = ItemCount.ToString();
             icon.sprite = itemInSlot.icon;
             icon.gameObject.SetActive(true);
-        } else
+        }
+         else
         {
             // No item
             itemCountText.text = "0";
+            //Debug.Log("ItemCount is 0");
             //icon.gameObject.SetActive(false);
         }
     }

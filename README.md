@@ -9,3 +9,7 @@ Characters -16x18-rpg-characters-hair-clothing-pack, by Charles Gabriel - https:
 Grid-based items set by Joss Moo-Young
 World tile set by ArMM1998 - https://opengameart.org/content/zelda-like-tilesets-and-sprites
 UI by Buch - https://opengameart.org/content/golden-ui
+
+################ Sources ###############
+Code Knowledge from BlackBoard Recording_8 Date(2021-09-30)
+
